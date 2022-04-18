@@ -1,0 +1,58 @@
+﻿@model Finance.Models.Revenue
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<form method="post" asp-action="Create">
+    <div class="border p-3 text-white-50">
+        <div class="form-group row">
+            <h2 class="text-black-50 pl-3">Add Income</h2> 
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Name">Income Name</label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Value">Value</label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="RevenueCategory.Name">Income Category</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="Value" class="form-control" />
+                        <span asp-validation-for="Value" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <select asp-for="RevenueCategoryId" asp-items="@ViewBag.RevenueCategoryId" class="form-control" >
+                            <option selected>--Select Income Category--</option>
+                        </select>
+                        <span asp-validation-for="RevenueCategoryId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-success w-75" value="Create" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-danger w-75">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
